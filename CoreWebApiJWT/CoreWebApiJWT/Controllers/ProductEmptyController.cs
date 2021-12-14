@@ -115,7 +115,8 @@ namespace CoreWebApiJWT.Controllers
                 //GetProductImageDetailsByProductName(DB.ProductTables.Find(ProductTable.P));
             //if (GetProductImageDetailsByProductName(x.ProductId)==0)
 
-            var obj = DB.ProductTables.Where(x => x.ProductName == ProductName).ToList();
+           // var obj = DB.ProductTables.Where(x => x.ProductName == ProductName).ToList();
+            var obj = DB.ProductTables.Where(x => x.ProductName.Contains(ProductName)).ToList();
             //var img = GetProductImageDetailsByProductName(DB.ProductTables.Find(ProductTable.P))
             //DB.ProductImages.Where(x => x.ProductId == product.ProductId).ToList();
             //return obj;
