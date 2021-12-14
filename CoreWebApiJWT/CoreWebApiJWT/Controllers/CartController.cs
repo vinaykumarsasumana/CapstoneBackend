@@ -47,7 +47,7 @@ namespace CoreWebApiJWT.Controllers
             //return new Response
             //{ Status = "Error", Message = "Invalid Data." };
 
-
+            //..........................................
 
 
             try

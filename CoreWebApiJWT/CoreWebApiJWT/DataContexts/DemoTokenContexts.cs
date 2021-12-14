@@ -111,21 +111,23 @@ namespace CoreWebApiJWT.DataContexts
             modelBuilder.Entity<CartTable>(entity =>
             {
                 entity.HasKey(e => e.CartId)
-                    .HasName("PK__CartTabl__51BCD7B7112BF87F");
+                    .HasName("PK__CartTabl__51BCD7B7BBC1E344");
 
                 entity.ToTable("CartTable");
+
+                entity.Property(e => e.DeliveryTime).HasMaxLength(255);
 
                 entity.Property(e => e.ProductName).HasMaxLength(255);
 
                 entity.HasOne(d => d.Buyer)
                     .WithMany(p => p.CartTables)
                     .HasForeignKey(d => d.BuyerId)
-                    .HasConstraintName("FK__CartTable__Buyer__4AB81AF0");
+                    .HasConstraintName("FK__CartTable__Buyer__5CD6CB2B");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.CartTables)
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__CartTable__Produ__4BAC3F29");
+                    .HasConstraintName("FK__CartTable__Produ__5DCAEF64");
             });
 
             modelBuilder.Entity<OrderTable>(entity =>
