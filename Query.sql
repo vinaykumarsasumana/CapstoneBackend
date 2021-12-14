@@ -2,7 +2,7 @@ create database ShoppingCapstoneDB
 
 use ShoppingCapstoneDB
 
---drop database ShoppingCapstoneDB
+drop database ShoppingCapstoneDB
 
 CREATE TABLE SellerRegistration
   ( 
@@ -41,7 +41,10 @@ create table ProductTable
 	ProductSubType nvarchar(255),
 	ProductName nvarchar(255),
 	ProductPrice int,
+	ProductQuantity int,
+	DeliveryTime nvarchar(255),
 	DeliveryCharge int,
+	ProductsSold int,
 	ProductDescription nvarchar(1000),
 	ProductionCountryOrigin nvarchar(255),
 	ProductTermsandCondition nvarchar(1000),
@@ -50,7 +53,7 @@ create table ProductTable
 
 create table ProductImage
 (
-	ProductImageID int primary key identity(1,1),
+	ProductImageID int primary key identity,
 	ProductID int,
 	ProductImageURL nvarchar(Max),
 	ImageCaption nvarchar(255)
@@ -94,22 +97,21 @@ Create table OrderTable(
 	Country nvarchar(255),
 	Mobile nvarchar(255),
 	Email nvarchar(255),
-	DeliverCharge nvarchar(255),
-	TotalPrice nvarchar(255),
+	DeliverCharge int,
 	Foreign key (BuyerID) References BuyerRegistration(BuyerRegId),
 	Foreign key (SellerID) References SellerRegistration(SellerRegId),
 	Foreign key (ProductID) References ProductTable(ProductId)
 );
 
---drop table OrderTable
---drop table ProductImage
---drop table CartTable
---drop table Wishlist
---drop table ProductTable
---drop table SellerRegistration
---drop table SellerLogin
---drop table BuyerRegistration
---drop table BuyerLogin
+drop table OrderTable
+drop table ProductImage
+drop table CartTable
+drop table Wishlist
+drop table ProductTable
+drop table SellerRegistration
+drop table SellerLogin
+drop table BuyerRegistration
+drop table BuyerLogin
 
 create table CartTable(
 	CartId int primary key identity(1,1),
@@ -124,29 +126,22 @@ create table CartTable(
 )
 
 create table Wishlist(
-	CartId int primary key identity(1,1),
+	WishlistId int primary key identity(1,1),
 	BuyerId int ,
 	ProductId int,
 	ProductName nvarchar(255),
-	ProductPrice nvarchar(255),
+	ProductPrice int,
 	OneImage nvarchar(max)
 	FOREIGN KEY (BuyerId) REFERENCES BuyerRegistration(BuyerRegId),
 	FOREIGN KEY (ProductId) REFERENCES ProductTable(ProductId)
 )
 
 select * from SellerRegistration
-
-insert into SellerRegistration values ('vini','kumar','string','string','string','string','string','string','string')
-
 select * from SellerLogin
-
-select * from ProductTable
 select * from OrderTable
+select * from ProductTable
 select * from ProductImage
 select * from CartTable
 select * from Wishlist
 select * from BuyerRegistration
 select * from BuyerLogin
-
-
-insert into BuyerLogin values(1,'string','string')

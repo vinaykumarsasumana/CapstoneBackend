@@ -21,8 +21,7 @@ namespace CoreWebApiJWT.DataContexts
         public string Country { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }
-        public string DeliverCharge { get; set; }
-        public string TotalPrice { get; set; }
+        public int? DeliverCharge { get; set; }
 
         public virtual BuyerRegistration Buyer { get; set; }
         public virtual ProductTable Product { get; set; }

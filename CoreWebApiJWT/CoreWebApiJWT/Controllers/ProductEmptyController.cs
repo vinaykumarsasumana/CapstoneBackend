@@ -16,41 +16,42 @@ namespace CoreWebApiJWT.Controllers
     public class ProductEmptyController : ControllerBase
     {
         DemoTokenContexts DB = new DemoTokenContexts();
-        [Route("AddProduct")]
-        [HttpPost]
-        public object AddProduct(ProductTable Reg)
-        {
-            try
-            {
-                ProductTable EL = new ProductTable();
 
-                if (EL.ProductId == 0)
-                {
-                    EL.SellerId = Reg.SellerId;
-                    EL.ProductBrandName = Reg.ProductBrandName;
-                    EL.ProductType = Reg.ProductType;
-                    EL.ProductSubType = Reg.ProductSubType;
-                    EL.ProductName = Reg.ProductName;
-                    EL.ProductPrice = Reg.ProductPrice;
-                    EL.DeliveryCharge = Reg.DeliveryCharge;
-                    EL.ProductDescription = Reg.ProductDescription;
-                    EL.ProductionCountryOrigin = Reg.ProductionCountryOrigin;
-                    EL.ProductTermsandCondition = Reg.ProductTermsandCondition;
-                    DB.ProductTables.Add(EL);
-                    DB.SaveChanges();
-                    return new Response
-                    { Status = "Success", Message = "Registration successful." };
-                }
-            }
-            catch (Exception)
-            {
-                return new Response
-                { Status = "Failure", Message = "Seller does not exists." };
-                //throw;
-            }
-            return new Response
-            { Status = "Error", Message = "Invalid Data." };
-        }
+        //[Route("AddProduct")]
+        //[HttpPost]
+        //public object AddProduct(ProductTable Reg)
+        //{
+        //    try
+        //    {
+        //        ProductTable EL = new ProductTable();
+
+        //        if (EL.ProductId == 0)
+        //        {
+        //            EL.SellerId = Reg.SellerId;
+        //            EL.ProductBrandName = Reg.ProductBrandName;
+        //            EL.ProductType = Reg.ProductType;
+        //            EL.ProductSubType = Reg.ProductSubType;
+        //            EL.ProductName = Reg.ProductName;
+        //            EL.ProductPrice = Reg.ProductPrice;
+        //            EL.DeliveryCharge = Reg.DeliveryCharge;
+        //            EL.ProductDescription = Reg.ProductDescription;
+        //            EL.ProductionCountryOrigin = Reg.ProductionCountryOrigin;
+        //            EL.ProductTermsandCondition = Reg.ProductTermsandCondition;
+        //            DB.ProductTables.Add(EL);
+        //            DB.SaveChanges();
+        //            return new Response
+        //            { Status = "Success", Message = "Registration successful." };
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return new Response
+        //        { Status = "Failure", Message = "Seller does not exists." };
+        //        //throw;
+        //    }
+        //    return new Response
+        //    { Status = "Error", Message = "Invalid Data." };
+        //}
 
         [Route("UpdateProductDetails")]
         [HttpPost]
@@ -63,16 +64,35 @@ namespace CoreWebApiJWT.Controllers
                     var EL = DB.ProductTables.Where(x => x.ProductId == Reg.ProductId).ToList().FirstOrDefault();
                     if (EL.ProductId > 0)
                     {
+                        //EL.ProductBrandName = Reg.ProductBrandName;
+                        //EL.ProductType = Reg.ProductType;
+                        //EL.ProductSubType = Reg.ProductSubType;
+                        //EL.ProductName = Reg.ProductName;
+                        //EL.ProductPrice = Reg.ProductPrice;
+                        //EL.DeliveryCharge = Reg.DeliveryCharge;
+                        //EL.ProductDescription = Reg.ProductDescription;
+                        //EL.ProductionCountryOrigin = Reg.ProductionCountryOrigin;
+                        //EL.ProductTermsandCondition = Reg.ProductTermsandCondition;
+                        //DB.SaveChanges();
+
+                        //EL.SellerId = Reg.SellerId;
                         EL.ProductBrandName = Reg.ProductBrandName;
                         EL.ProductType = Reg.ProductType;
                         EL.ProductSubType = Reg.ProductSubType;
                         EL.ProductName = Reg.ProductName;
                         EL.ProductPrice = Reg.ProductPrice;
+                        EL.ProductQuantity = Reg.ProductQuantity;
+                        EL.DeliveryTime = Reg.DeliveryTime;
                         EL.DeliveryCharge = Reg.DeliveryCharge;
+                        Random r = new Random();
+                        EL.ProductsSold = r.Next(1,1000);
                         EL.ProductDescription = Reg.ProductDescription;
                         EL.ProductionCountryOrigin = Reg.ProductionCountryOrigin;
                         EL.ProductTermsandCondition = Reg.ProductTermsandCondition;
+                        DB.ProductTables.Add(EL);
                         DB.SaveChanges();
+
+
                         return new Response
                         {
                             Status = "Updated",

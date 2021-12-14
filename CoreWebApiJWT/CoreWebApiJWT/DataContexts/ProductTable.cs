@@ -22,7 +22,10 @@ namespace CoreWebApiJWT.DataContexts
         public string ProductSubType { get; set; }
         public string ProductName { get; set; }
         public int ProductPrice { get; set; }
+        public int? ProductQuantity { get; set; }
+        public string DeliveryTime { get; set; }
         public int? DeliveryCharge { get; set; }
+        public int? ProductsSold { get; set; }
         public string ProductDescription { get; set; }
         public string ProductionCountryOrigin { get; set; }
         public string ProductTermsandCondition { get; set; }

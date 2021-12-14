@@ -31,7 +31,7 @@ namespace CoreWebApiJWT.DataContexts
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=5400-TI11982\\MSSQLSERVER1;Database=ShoppingCapstoneDB ;Trusted_Connection=True;");
             }
         }
@@ -64,7 +64,7 @@ namespace CoreWebApiJWT.DataContexts
             modelBuilder.Entity<BuyerRegistration>(entity =>
             {
                 entity.HasKey(e => e.BuyerRegId)
-                    .HasName("PK__BuyerReg__BC9A9849D4B20853");
+                    .HasName("PK__BuyerReg__BC9A9849AAA26C16");
 
                 entity.ToTable("BuyerRegistration");
 
@@ -111,7 +111,7 @@ namespace CoreWebApiJWT.DataContexts
             modelBuilder.Entity<CartTable>(entity =>
             {
                 entity.HasKey(e => e.CartId)
-                    .HasName("PK__CartTabl__51BCD7B78931A0DC");
+                    .HasName("PK__CartTabl__51BCD7B7112BF87F");
 
                 entity.ToTable("CartTable");
 
@@ -131,7 +131,7 @@ namespace CoreWebApiJWT.DataContexts
             modelBuilder.Entity<OrderTable>(entity =>
             {
                 entity.HasKey(e => e.OrderId)
-                    .HasName("PK__OrderTab__C3905BAFC7BEDEE7");
+                    .HasName("PK__OrderTab__C3905BAF528ED01C");
 
                 entity.ToTable("OrderTable");
 
@@ -147,8 +147,6 @@ namespace CoreWebApiJWT.DataContexts
 
                 entity.Property(e => e.Country).HasMaxLength(255);
 
-                entity.Property(e => e.DeliverCharge).HasMaxLength(255);
-
                 entity.Property(e => e.Email).HasMaxLength(255);
 
                 entity.Property(e => e.Mobile).HasMaxLength(255);
@@ -160,8 +158,6 @@ namespace CoreWebApiJWT.DataContexts
                 entity.Property(e => e.ProductName).HasMaxLength(255);
 
                 entity.Property(e => e.SellerId).HasColumnName("SellerID");
-
-                entity.Property(e => e.TotalPrice).HasMaxLength(255);
 
                 entity.HasOne(d => d.Buyer)
                     .WithMany(p => p.OrderTables)
@@ -200,9 +196,11 @@ namespace CoreWebApiJWT.DataContexts
             modelBuilder.Entity<ProductTable>(entity =>
             {
                 entity.HasKey(e => e.ProductId)
-                    .HasName("PK__ProductT__B40CC6CD4831F6B3");
+                    .HasName("PK__ProductT__B40CC6CD605C5072");
 
                 entity.ToTable("ProductTable");
+
+                entity.Property(e => e.DeliveryTime).HasMaxLength(255);
 
                 entity.Property(e => e.ProductBrandName).HasMaxLength(255);
 
@@ -245,7 +243,7 @@ namespace CoreWebApiJWT.DataContexts
             modelBuilder.Entity<SellerRegistration>(entity =>
             {
                 entity.HasKey(e => e.SellerRegId)
-                    .HasName("PK__SellerRe__D9353F70BF526156");
+                    .HasName("PK__SellerRe__D9353F70CE7F0C26");
 
                 entity.ToTable("SellerRegistration");
 
@@ -279,14 +277,9 @@ namespace CoreWebApiJWT.DataContexts
 
             modelBuilder.Entity<Wishlist>(entity =>
             {
-                entity.HasKey(e => e.CartId)
-                    .HasName("PK__Wishlist__51BCD7B708501C77");
-
                 entity.ToTable("Wishlist");
 
                 entity.Property(e => e.ProductName).HasMaxLength(255);
-
-                entity.Property(e => e.ProductPrice).HasMaxLength(255);
 
                 entity.HasOne(d => d.Buyer)
                     .WithMany(p => p.Wishlists)
