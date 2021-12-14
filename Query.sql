@@ -2,7 +2,7 @@ create database ShoppingCapstoneDB
 
 use ShoppingCapstoneDB
 
-drop database ShoppingCapstoneDB
+--drop database ShoppingCapstoneDB
 
 CREATE TABLE SellerRegistration
   ( 
@@ -30,7 +30,7 @@ CREATE TABLE SellerLogin
   ) 
 GO 
 
-drop table SellerLogin
+--drop table SellerLogin
 
 create table ProductTable
 (
@@ -103,15 +103,15 @@ Create table OrderTable(
 	Foreign key (ProductID) References ProductTable(ProductId)
 );
 
-drop table OrderTable
-drop table ProductImage
-drop table CartTable
-drop table Wishlist
-drop table ProductTable
-drop table SellerRegistration
-drop table SellerLogin
-drop table BuyerRegistration
-drop table BuyerLogin
+--drop table OrderTable
+--drop table ProductImage
+--drop table CartTable
+--drop table Wishlist
+--drop table ProductTable
+--drop table SellerRegistration
+--drop table SellerLogin
+--drop table BuyerRegistration
+--drop table BuyerLogin
 
 create table CartTable(
 	CartId int primary key identity(1,1),
@@ -121,6 +121,8 @@ create table CartTable(
 	ProductPrice int,
 	ProductQuantity int,
 	ProductImage nvarchar(max),
+	DeliveryTime nvarchar(255),
+	DeliveryCharge int,
 	Foreign key (BuyerID) References BuyerRegistration(BuyerRegId),
 	Foreign key (ProductID) References ProductTable(ProductId)
 )
