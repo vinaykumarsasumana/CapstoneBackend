@@ -285,7 +285,7 @@ namespace CoreWebApiJWT.Controllers
             //               select s;
             var products1 = from s in DB.ProductImages
                             select s;
-            var products = DB.ProductTables.Where(s => s.ProductSubType.Contains(SubType) || SubType == null).ToList().Take(10);
+            var products = DB.ProductTables.Where(s => s.ProductSubType.Contains(SubType) || SubType == null).ToList().Take(1000);
 
             switch (sortOrder)
             {

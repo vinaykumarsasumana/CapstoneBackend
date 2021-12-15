@@ -313,11 +313,27 @@ namespace CoreWebApiJWT.Controllers
 
         [Route("DeleteFromCartByBuyerId")]
         [HttpDelete]
+        //public object DeleteFromCartByBuyerId(int BuyerId)
+        //{
+        //    var obj = DB.CartTables.Where(x => x.BuyerId == BuyerId).ToList().FirstOrDefault();
+
+        //    DB.CartTables.Remove(obj);
+        //    DB.SaveChanges();
+        //    return new Response
+        //    {
+        //        Status = "Delete",
+        //        Message = "Record Deleted Successfully"
+        //    };
+        //}
         public object DeleteFromCartByBuyerId(int BuyerId)
         {
-            var obj = DB.CartTables.Where(x => x.BuyerId == BuyerId).ToList().FirstOrDefault();
-            DB.CartTables.Remove(obj);
-            DB.SaveChanges();
+            var obj = DB.CartTables.Where(x => x.BuyerId == BuyerId).ToList();
+            foreach (var prod in obj)
+            {
+                DB.CartTables.Remove(prod);
+                DB.SaveChanges();
+            }
+
             return new Response
             {
                 Status = "Delete",

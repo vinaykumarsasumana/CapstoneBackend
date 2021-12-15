@@ -45,7 +45,7 @@ namespace CoreWebApiJWT.Controllers
         [HttpGet]
         public object GetWishlistDetailsByBuyerId(int BuyerId)
         {
-            var obj = _context.CartTables.Where(x => x.BuyerId == BuyerId).ToList();
+            var obj = _context.Wishlists.Where(x => x.BuyerId == BuyerId).ToList();
             return obj;
         }
 
@@ -89,7 +89,7 @@ namespace CoreWebApiJWT.Controllers
             _context.Wishlists.Add(wishlist);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetWishlist", new { id = wishlist.WishlistId }, wishlist);
+            return CreatedAtAction("PostWishlist", new { id = wishlist.WishlistId }, wishlist);
         }
 
         // DELETE: api/Wishlists/5
