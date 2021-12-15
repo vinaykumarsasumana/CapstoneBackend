@@ -228,6 +228,18 @@ namespace CoreWebApiJWT.Controllers
         //    //return (DB.Registers.Where(s => s.Name.StartsWith(search) || search == null).ToList().Take(10));
         //    //return (DB.Registers.Where(s => s.Name.Contains(search) || search == null).ToList().Take(10));
         //}
+
+
+        [Route("GetSellerDetailsByEmail")]
+        [HttpGet]
+        public object GetSellerDetailsByEmail(string Email)
+        {
+            var obj = DB.SellerRegistrations.Where(x => x.EmailId == Email).ToList().FirstOrDefault();
+            return obj;
+        }
+
+
+
     }
 }
 
