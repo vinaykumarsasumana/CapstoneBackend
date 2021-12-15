@@ -14,3 +14,8 @@ Microsoft.EntityFrameworkCore.SqlServer -ContextDir DataContexts -Context DemoTo
 
 Modification Timeline:
 15-12-2021 11:00 AM: Modified CartController
+15-12-2021 12:34 PM: Updated Cart Controller.
+  Note:
+  Ignore CartTablesController and every controller required for Cart Table will be available in CartController only.
+15-12-2021 12:34 PM: Modified SellerController as per vivek Requirement.
+15-12-2021 12:34 PM: Upadted OrderController with GetOrderDetailsByBuyerId and DeleteOrder methods.
