@@ -41,10 +41,11 @@ namespace CoreWebApiJWT.Controllers
         //    return wishlist;
         //}
 
-        [HttpGet("{id}")]
-        public object GetWishlists(int id)
+        [Route("GetWishlistDetailsByBuyerId")]
+        [HttpGet]
+        public object GetWishlistDetailsByBuyerId(int BuyerId)
         {
-            var obj = _context.Wishlists.Where(x => x.BuyerId == id).ToList();
+            var obj = _context.CartTables.Where(x => x.BuyerId == BuyerId).ToList();
             return obj;
         }
 
