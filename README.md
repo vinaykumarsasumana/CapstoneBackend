@@ -27,3 +27,6 @@ Modification Timeline:
 15-12-2021 12:44 PM: Modified WishlistsController
 
 15-12-2021 12:51 PM: Ignore WishlistController just consider WishlistsController
+
+15-12-2021 4:20 PM: Modified SellerController, just added GetSellerDetailsByEmail method.
+
