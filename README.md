@@ -22,4 +22,4 @@ Modification Timeline:
   
 15-12-2021 12:34 PM: Modified SellerController as per vivek Requirement.
 
-15-12-2021 12:34 PM: Upadted OrderController with GetOrderDetailsByBuyerId and DeleteOrder methods.
+15-12-2021 12:34 PM: Updated OrderController with GetOrderDetailsByBuyerId and DeleteOrder methods.
