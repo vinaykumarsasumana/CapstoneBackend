@@ -2,6 +2,7 @@
 using CoreWebApiJWT.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +63,11 @@ namespace CoreWebApiJWT.Controllers
                     EL.ProductPrice = Reg.ProductPrice;
                     EL.ProductQuantity = Reg.ProductQuantity;
                     EL.ProductImage = Reg.ProductImage;
+
+                    EL.DeliveryCharge = Reg.DeliveryCharge;
+                    EL.DeliveryTime = Reg.DeliveryTime;
+
+
                     DB.CartTables.Add(EL);
                     DB.SaveChanges();
                     return new Response
@@ -243,14 +249,66 @@ namespace CoreWebApiJWT.Controllers
         // //return (DB.Registers.Where(s => s.Name.Contains(search) || search == null).ToList().Take(10));
         //}
 
-        [HttpGet]
-        public async Task<ActionResult<CartTable>> GetCartDetails(string ProductName)
-        {
-            var obj = DB.CartTables.Where(x => x.ProductName == ProductName).ToList().FirstOrDefault();
+        //.................
 
-            //return obj;
-            return obj;
+        //[HttpGet]
+        //public async Task<ActionResult<CartTable>> GetCartDetails(string ProductName)
+        //{
+        //    var obj = DB.CartTables.Where(x => x.ProductName == ProductName).ToList().FirstOrDefault();
+
+        //    //return obj;
+        //    return obj;
+        //}
+
+        [HttpPut("{CartId}")]
+        public async Task<IActionResult> PutCartTable(int CartId, CartTable cartTable)
+        {
+            if (CartId != cartTable.CartId)
+            {
+                return BadRequest();
+            }
+
+            DB.Entry(cartTable).State = EntityState.Modified;
+
+            try
+            {
+                await DB.SaveChangesAsync();
+            }
+            catch (/*DbUpdateConcurrencyException*/Exception)
+            {
+                if (!CartTableExists(CartId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
+        private bool CartTableExists(int id)
+        {
+            return DB.CartTables.Any(e => e.CartId == id);
+        }
+
+
+
+        [Route("DeleteFromCart")]
+        [HttpDelete]
+        public object DeleteFromCart(int ProductId)
+        {
+            var obj = DB.CartTables.Where(x => x.ProductId == ProductId).ToList().FirstOrDefault();
+            DB.CartTables.Remove(obj);
+            DB.SaveChanges();
+            return new Response
+            {
+                Status = "Delete",
+                Message = "Record Deleted Successfully"
+            };
+        }
+
 
     }
 }

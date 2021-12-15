@@ -55,6 +55,33 @@ namespace CoreWebApiJWT.Controllers
             return new Response
             { Status = "Error", Message = "Invalid Data." };
         }
+
+
+        [Route("GetOrderDetailsByBuyerId")]
+        [HttpGet]
+        public object GetOrderDetailsByBuyerId(int BuyerId)
+        {
+            var obj = DB.OrderTables.Where(x => x.BuyerId == BuyerId).ToList();
+            return obj;
+        }
+
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteOrder(int ProductId)
+        {
+            var order = DB.OrderTables.Where(x => x.ProductId == ProductId).ToList().FirstOrDefault();
+            /*DB.OrderTables.FindAsync(id);*/
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            DB.OrderTables.Remove(order);
+            await DB.SaveChangesAsync();
+
+            return NoContent();
+        }
+
     }
 
 }

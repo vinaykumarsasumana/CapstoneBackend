@@ -49,29 +49,50 @@ namespace CoreWebApiJWT.Controllers
             { Status = "Error", Message = "Invalid Data." };
         }
 
+        //[Route("SellerLogin")]
+        //[HttpPost]
+        //public Response sellerLogin(string Email, string Password)
+        //{
+        //    //var log = DB.SellerRegisters.Where(x => x.EmailId.Equals(reg.EmailID)).FirstOrDefault();
+        //    //var log = DB.SellerRegisters.Where(x => x.Id.Equals(loginId) ).FirstOrDefault();
+
+        //    var log = DB.SellerRegistrations.Where(x => x.EmailId.Equals(Email)).FirstOrDefault();
+        //    var pass = DB.SellerRegistrations.Where(x => x.SellerPassword.Equals(Password)).FirstOrDefault();
+
+        //    if (log == null || pass == null)
+        //    {
+        //        return new Response { Status = "Invalid", Message = "Invalid User." };
+        //    }
+        //    else
+        //    {
+        //        SellerLogin EL = new SellerLogin();
+        //        //EL.SellerId = SellerRegID;
+        //        EL.Email = Email;
+        //        EL.SellerPassword = Password;
+        //        DB.SellerLogins.Add(EL);
+        //        DB.SaveChanges();
+        //        return new Response { Status = "Success", Message = "Login Successful" };
+        //    }
+        //}
         [Route("SellerLogin")]
         [HttpPost]
-        public Response sellerLogin(string Email, string Password)
+        public Response SellerLogin(LoginModel loginDetails)
         {
-            //var log = DB.SellerRegisters.Where(x => x.EmailId.Equals(reg.EmailID)).FirstOrDefault();
-            //var log = DB.SellerRegisters.Where(x => x.Id.Equals(loginId) ).FirstOrDefault();
-
-            var log = DB.SellerRegistrations.Where(x => x.EmailId.Equals(Email)).FirstOrDefault();
-            var pass = DB.SellerRegistrations.Where(x => x.SellerPassword.Equals(Password)).FirstOrDefault();
-
-            if (log == null || pass == null)
+            var log = DB.SellerRegistrations.Where(x => x.EmailId.Equals(loginDetails.EmailId)).FirstOrDefault();
+            if (log != null)
             {
-                return new Response { Status = "Invalid", Message = "Invalid User." };
+                if (log.SellerPassword == loginDetails.SellerPassword)
+                {
+                    return new Response { Status = "Success", Message = "Login Successful" };
+                }
+                else
+                {
+                    return new Response { Status = "Invalid", Message = "Invalid User." };
+                }
             }
             else
             {
-                SellerLogin EL = new SellerLogin();
-                //EL.SellerId = SellerRegID;
-                EL.Email = Email;
-                EL.SellerPassword = Password;
-                DB.SellerLogins.Add(EL);
-                DB.SaveChanges();
-                return new Response { Status = "Success", Message = "Login Successful" };
+                return new Response { Status = "Invalid", Message = "Invalid User." };
             }
         }
 
