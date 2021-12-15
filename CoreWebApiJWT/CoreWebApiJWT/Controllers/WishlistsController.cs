@@ -28,17 +28,24 @@ namespace CoreWebApiJWT.Controllers
         }
 
         // GET: api/Wishlists/5
+
+        //public async Task<ActionResult<Wishlist>> GetWishlist(int id)
+        //{
+        //    var wishlist = await _context.Wishlists.FindAsync(id);
+
+        //    if (wishlist == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return wishlist;
+        //}
+
         [HttpGet("{id}")]
-        public async Task<ActionResult<Wishlist>> GetWishlist(int id)
+        public object GetWishlists(int id)
         {
-            var wishlist = await _context.Wishlists.FindAsync(id);
-
-            if (wishlist == null)
-            {
-                return NotFound();
-            }
-
-            return wishlist;
+            var obj = _context.Wishlists.Where(x => x.BuyerId == id).ToList();
+            return obj;
         }
 
         // PUT: api/Wishlists/5
