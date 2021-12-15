@@ -2,8 +2,6 @@ create database ShoppingCapstoneDB
 
 use ShoppingCapstoneDB
 
---drop database ShoppingCapstoneDB
-
 CREATE TABLE SellerRegistration
   ( 
 	 SellerRegID int primary key identity(1, 1),
@@ -30,7 +28,6 @@ CREATE TABLE SellerLogin
   ) 
 GO 
 
---drop table SellerLogin
 
 create table ProductTable
 (
@@ -83,35 +80,19 @@ CREATE TABLE BuyerLogin (
 );
 
 Create table OrderTable(
-	OrderID int primary key identity(1,1),
-	ProductID int,
-	BuyerID int,
-	SellerID int,
-	ProductName nvarchar(255),
-	ProductPrice int,
-	ProductQuantity int,
-	BuyerAddress nvarchar(255),
-	City nvarchar(255),
-	BuyerState nvarchar(255),
-	Pincode nvarchar(255),
-	Country nvarchar(255),
-	Mobile nvarchar(255),
-	Email nvarchar(255),
-	DeliverCharge int,
-	Foreign key (BuyerID) References BuyerRegistration(BuyerRegId),
-	Foreign key (SellerID) References SellerRegistration(SellerRegId),
-	Foreign key (ProductID) References ProductTable(ProductId)
+OrderID int primary key identity(1,1),
+ProductID int,
+BuyerID int,
+ProductName nvarchar(255),
+ProductPrice int,
+ProductQuantity int,
+ProductImage nvarchar(255),
+DeliveryCharge int,
+DeliveryTime nvarchar(255),
+Foreign key (BuyerID) References BuyerRegistration(BuyerRegId),
+Foreign key (ProductID) References ProductTable(ProductId)
 );
 
---drop table OrderTable
---drop table ProductImage
---drop table CartTable
---drop table Wishlist
---drop table ProductTable
---drop table SellerRegistration
---drop table SellerLogin
---drop table BuyerRegistration
---drop table BuyerLogin
 
 create table CartTable(
 	CartId int primary key identity(1,1),
@@ -138,12 +119,17 @@ create table Wishlist(
 	FOREIGN KEY (ProductId) REFERENCES ProductTable(ProductId)
 )
 
+alter table Wishlist add DeliveryTime nvarchar(255)
+alter table Wishlist add DeliveryCharge int
+alter table Wishlist add ProductQuantity int
+
 select * from SellerRegistration
 select * from SellerLogin
 select * from OrderTable
-select * from ProductTable
-select * from ProductImage
 select * from CartTable
 select * from Wishlist
+select * from ProductTable
+select * from ProductImage
 select * from BuyerRegistration
 select * from BuyerLogin
+

@@ -13,6 +13,9 @@ namespace CoreWebApiJWT.DataContexts
         public string ProductName { get; set; }
         public int? ProductPrice { get; set; }
         public string OneImage { get; set; }
+        public string DeliveryTime { get; set; }
+        public int? DeliveryCharge { get; set; }
+        public int? ProductQuantity { get; set; }
 
         public virtual BuyerRegistration Buyer { get; set; }
         public virtual ProductTable Product { get; set; }

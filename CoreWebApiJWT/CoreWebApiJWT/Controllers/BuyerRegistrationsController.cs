@@ -103,5 +103,6 @@ namespace CoreWebApiJWT.Controllers
         {
             return _context.BuyerRegistrations.Any(e => e.BuyerRegId == id);
         }
+
     }
 }

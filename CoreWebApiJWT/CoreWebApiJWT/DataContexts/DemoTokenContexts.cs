@@ -133,48 +133,31 @@ namespace CoreWebApiJWT.DataContexts
             modelBuilder.Entity<OrderTable>(entity =>
             {
                 entity.HasKey(e => e.OrderId)
-                    .HasName("PK__OrderTab__C3905BAF528ED01C");
+                    .HasName("PK__OrderTab__C3905BAF10CB4492");
 
                 entity.ToTable("OrderTable");
 
                 entity.Property(e => e.OrderId).HasColumnName("OrderID");
 
-                entity.Property(e => e.BuyerAddress).HasMaxLength(255);
-
                 entity.Property(e => e.BuyerId).HasColumnName("BuyerID");
 
-                entity.Property(e => e.BuyerState).HasMaxLength(255);
-
-                entity.Property(e => e.City).HasMaxLength(255);
-
-                entity.Property(e => e.Country).HasMaxLength(255);
-
-                entity.Property(e => e.Email).HasMaxLength(255);
-
-                entity.Property(e => e.Mobile).HasMaxLength(255);
-
-                entity.Property(e => e.Pincode).HasMaxLength(255);
+                entity.Property(e => e.DeliveryTime).HasMaxLength(255);
 
                 entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
-                entity.Property(e => e.ProductName).HasMaxLength(255);
+                entity.Property(e => e.ProductImage).HasMaxLength(255);
 
-                entity.Property(e => e.SellerId).HasColumnName("SellerID");
+                entity.Property(e => e.ProductName).HasMaxLength(255);
 
                 entity.HasOne(d => d.Buyer)
                     .WithMany(p => p.OrderTables)
                     .HasForeignKey(d => d.BuyerId)
-                    .HasConstraintName("FK__OrderTabl__Buyer__45F365D3");
+                    .HasConstraintName("FK__OrderTabl__Buyer__6FE99F9F");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.OrderTables)
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__OrderTabl__Produ__47DBAE45");
-
-                entity.HasOne(d => d.Seller)
-                    .WithMany(p => p.OrderTables)
-                    .HasForeignKey(d => d.SellerId)
-                    .HasConstraintName("FK__OrderTabl__Selle__46E78A0C");
+                    .HasConstraintName("FK__OrderTabl__Produ__70DDC3D8");
             });
 
             modelBuilder.Entity<ProductImage>(entity =>
@@ -280,6 +263,8 @@ namespace CoreWebApiJWT.DataContexts
             modelBuilder.Entity<Wishlist>(entity =>
             {
                 entity.ToTable("Wishlist");
+
+                entity.Property(e => e.DeliveryTime).HasMaxLength(255);
 
                 entity.Property(e => e.ProductName).HasMaxLength(255);
 

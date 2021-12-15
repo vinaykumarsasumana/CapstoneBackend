@@ -9,7 +9,6 @@ namespace CoreWebApiJWT.DataContexts
     {
         public SellerRegistration()
         {
-            OrderTables = new HashSet<OrderTable>();
             ProductTables = new HashSet<ProductTable>();
             SellerLogins = new HashSet<SellerLogin>();
         }
@@ -25,7 +24,6 @@ namespace CoreWebApiJWT.DataContexts
         public string CompanyName { get; set; }
         public string CompanyUrl { get; set; }
 
-        public virtual ICollection<OrderTable> OrderTables { get; set; }
         public virtual ICollection<ProductTable> ProductTables { get; set; }
         public virtual ICollection<SellerLogin> SellerLogins { get; set; }
     }

@@ -150,14 +150,15 @@ namespace CoreWebApiJWT.Controllers
 
 
 
-        [Route("GetCartDetailsById")]
+        [Route("GetCartDetailsByBuyerId")]
         [HttpGet]
-        public object GetCartDetailsById(int BuyerId)
+        public object GetCartDetailsByBuyerId(int BuyerId)
         {
             var obj = DB.CartTables.Where(x => x.BuyerId == BuyerId).ToList();
             return obj;
         }
 
+        //ip--> buyerID;after placing orders Find and delete all rows==BuyerId in cart table;  
 
 
         //[Route("GetSellerDetailsByEmail")]
@@ -295,9 +296,9 @@ namespace CoreWebApiJWT.Controllers
 
 
 
-        [Route("DeleteFromCart")]
+        [Route("DeleteFromCartByProductId")]
         [HttpDelete]
-        public object DeleteFromCart(int ProductId)
+        public object DeleteFromCartByProductId(int ProductId)
         {
             var obj = DB.CartTables.Where(x => x.ProductId == ProductId).ToList().FirstOrDefault();
             DB.CartTables.Remove(obj);
@@ -309,6 +310,20 @@ namespace CoreWebApiJWT.Controllers
             };
         }
 
+
+        [Route("DeleteFromCartByBuyerId")]
+        [HttpDelete]
+        public object DeleteFromCartByBuyerId(int BuyerId)
+        {
+            var obj = DB.CartTables.Where(x => x.BuyerId == BuyerId).ToList().FirstOrDefault();
+            DB.CartTables.Remove(obj);
+            DB.SaveChanges();
+            return new Response
+            {
+                Status = "Delete",
+                Message = "Record Deleted Successfully"
+            };
+        }
 
     }
 }
