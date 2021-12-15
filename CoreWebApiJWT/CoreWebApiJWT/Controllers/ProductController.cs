@@ -302,7 +302,7 @@ namespace CoreWebApiJWT.Controllers
                     products = products.OrderBy(s => s.ProductPrice);
                     break;
                 case "BS":
-                    products = products.OrderBy(s => s.ProductPrice);
+                    products = products.OrderByDescending(s => s.ProductsSold);
                     break;
                 default:
                     products = products.OrderBy(s => s.ProductName);
