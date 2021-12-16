@@ -43,37 +43,11 @@ namespace CoreWebApiJWT.Controllers
             {
                 return new Response
                 { Status = "Failure", Message = "EmailID already registered." };
-                //throw;
             }
             return new Response
             { Status = "Error", Message = "Invalid Data." };
         }
 
-        //[Route("SellerLogin")]
-        //[HttpPost]
-        //public Response sellerLogin(string Email, string Password)
-        //{
-        //    //var log = DB.SellerRegisters.Where(x => x.EmailId.Equals(reg.EmailID)).FirstOrDefault();
-        //    //var log = DB.SellerRegisters.Where(x => x.Id.Equals(loginId) ).FirstOrDefault();
-
-        //    var log = DB.SellerRegistrations.Where(x => x.EmailId.Equals(Email)).FirstOrDefault();
-        //    var pass = DB.SellerRegistrations.Where(x => x.SellerPassword.Equals(Password)).FirstOrDefault();
-
-        //    if (log == null || pass == null)
-        //    {
-        //        return new Response { Status = "Invalid", Message = "Invalid User." };
-        //    }
-        //    else
-        //    {
-        //        SellerLogin EL = new SellerLogin();
-        //        //EL.SellerId = SellerRegID;
-        //        EL.Email = Email;
-        //        EL.SellerPassword = Password;
-        //        DB.SellerLogins.Add(EL);
-        //        DB.SaveChanges();
-        //        return new Response { Status = "Success", Message = "Login Successful" };
-        //    }
-        //}
         [Route("SellerLogin")]
         [HttpPost]
         public Response SellerLogin(LoginModel loginDetails)
@@ -127,7 +101,6 @@ namespace CoreWebApiJWT.Controllers
             }
             catch (Exception ex)
             {
-                //Console.Write(ex.Message);
                 return new Response
                 { Status = "Failure", Message = "User not found." };
             }
@@ -152,84 +125,6 @@ namespace CoreWebApiJWT.Controllers
             return obj;
         }
 
-        //[Route("GetSellerDetailsByEmail")]
-        //[HttpGet]
-        //public object GetSellerDetailsByEmail(string Email)
-        //{
-        //    var obj = DB.SellerRegistrations.Where(x => x.EmailId == Email).ToList().FirstOrDefault();
-        //    return obj;
-        //}
-
-        //[Route("DeleteSeller")]
-        //[HttpDelete]
-        //public object DeleteSeller(int SellerRegId)
-        //{
-        //    var obj = DB.SellerRegistrations.Where(x => x.SellerRegId == SellerRegId).ToList().FirstOrDefault();
-        //    DB.SellerRegistrations.Remove(obj);
-        //    DB.SaveChanges();
-        //    return new Response
-        //    {
-        //        Status = "Delete",
-        //        Message = "Record Deleted Successfully"
-        //    };
-        //}
-
-        //Query to sort in ascending and descending order
-
-        //[Route("Sorting")]
-        //[HttpGet]
-        //public object sorting(string sortOrder)
-        //{
-        //    var products = from s in DB.ProductTables
-        //                   select s;
-        //    switch (sortOrder)
-        //    {
-        //        case "Z2A":
-        //            products = products.OrderByDescending(s => s.ProductName);
-        //            break;
-        //        case "A2Z":
-        //            products = products.OrderBy(s => s.ProductName);
-        //            break;
-        //        case "H2L":
-        //            products = products.OrderByDescending(s => s.ProductPrice);
-        //            break;
-        //        case "L2H":
-        //            products = products.OrderBy(s => s.ProductPrice);
-        //            break;
-        //        case "BS":
-        //            products = products.OrderBy(s => s.ProductPrice);
-        //            break;
-        //        default:
-        //            products = products.OrderBy(s => s.ProductName);
-        //            break;
-        //    }
-
-        //    var items = products
-        //      .Select(f => new OnlyName
-        //      {
-        //          Name = f.ProductName
-        //      }).ToList();
-        //    return items;
-        //}
-
-        ////Function for querying search
-        //[Route("Searching")]
-        //[HttpGet]
-        //public object search(string search)
-        //{
-        //    var product = DB.ProductTables.Where(s => s.ProductName.Contains(search) || search == null).ToList().Take(10);
-
-        //    var items = product
-        //      .Select(f => new OnlyName
-        //      {
-        //          Name = f.ProductName
-        //      }).ToList();
-        //    return items;
-        //    //return (DB.Registers.Where(s => s.Name.StartsWith(search) || search == null).ToList().Take(10));
-        //    //return (DB.Registers.Where(s => s.Name.Contains(search) || search == null).ToList().Take(10));
-        //}
-
-
         [Route("GetSellerDetailsByEmail")]
         [HttpGet]
         public object GetSellerDetailsByEmail(string Email)
@@ -237,8 +132,6 @@ namespace CoreWebApiJWT.Controllers
             var obj = DB.SellerRegistrations.Where(x => x.EmailId == Email).ToList().FirstOrDefault();
             return obj;
         }
-
-
 
     }
 }
